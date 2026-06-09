@@ -8,17 +8,17 @@ use tokio::sync::broadcast;
 use tower_http::cors::CorsLayer;
 use tower_http::services::{ServeDir, ServeFile};
 
-use taskd_core::db::Database;
+use datubyte_task_core::db::Database;
 
 use handlers::AppState;
 
 #[derive(Parser)]
-#[command(name = "taskd-server")]
+#[command(name = "datubyte-task-server")]
 struct Args {
 	#[arg(long, default_value = "3000")]
 	port: u16,
 
-	#[arg(long, default_value = "taskd.db")]
+	#[arg(long, default_value = "datubyte-task.db")]
 	db: String,
 
 	#[arg(long)]

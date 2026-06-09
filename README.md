@@ -1,4 +1,4 @@
-# taskd
+# datubyte-task
 
 Lightweight project management tool built for AI agent workflows. SQLite backend, Rust CLI and API server, terminal-themed web UI with live SSE updates.
 
@@ -10,8 +10,8 @@ Lightweight project management tool built for AI agent workflows. SQLite backend
 ## Install
 
 ```bash
-git clone git@github.com:irelandmi/taskd.git
-cd taskd
+git clone git@github.com:irelandmi/datubyte-task.git
+cd datubyte-task
 
 # Install the CLI and server binaries
 cargo install --path crates/cli
@@ -21,27 +21,27 @@ cargo install --path crates/server
 cd frontend && npm install && npm run build && cd ..
 ```
 
-This installs `taskd` and `taskd-server` to `~/.cargo/bin/`. No external dependencies — SQLite is compiled from source.
+This installs `datubyte-task` and `datubyte-task-server` to `~/.cargo/bin/`. No external dependencies — SQLite is compiled from source.
 
 ## Quick Start
 
 ```bash
 # Start the server with the web UI
-taskd-server --port 3000 --static-dir frontend/dist
+datubyte-task-server --port 3000 --static-dir frontend/dist
 
 # Use the CLI
-taskd project create "My Project"
-taskd task create --project <id> "My first task"
-taskd task list --project <id>
+datubyte-task project create "My Project"
+datubyte-task task create --project <id> "My first task"
+datubyte-task task list --project <id>
 ```
 
 ## Architecture
 
 ```
 crates/
-  core/       # SQLite schema, models, queries (taskd-core)
-  cli/        # CLI binary (taskd)
-  server/     # Axum API server (taskd-server)
+  core/       # SQLite schema, models, queries (datubyte-task-core)
+  cli/        # CLI binary (datubyte-task)
+  server/     # Axum API server (datubyte-task-server)
 frontend/     # TypeScript + Vite web UI
 docs/         # Architecture and schema docs
 tests/        # E2E shell tests
@@ -51,38 +51,38 @@ tests/        # E2E shell tests
 
 ```bash
 # Projects
-taskd project list
-taskd project create <name> [--description <desc>]
-taskd project show <id>
-taskd project delete <id>
+datubyte-task project list
+datubyte-task project create <name> [--description <desc>]
+datubyte-task project show <id>
+datubyte-task project delete <id>
 
 # Epics
-taskd epic list --project <id>
-taskd epic create --project <id> <name> [--description <desc>]
-taskd epic show <id>
-taskd epic close <id>
-taskd epic delete <id>
+datubyte-task epic list --project <id>
+datubyte-task epic create --project <id> <name> [--description <desc>]
+datubyte-task epic show <id>
+datubyte-task epic close <id>
+datubyte-task epic delete <id>
 
 # Tasks
-taskd task list --project <id> [--status <s>] [--epic <id>] [--assignee <a>] [--label <l>] [--kind <k>]
-taskd task create --project <id> <title> [--epic <id>] [--kind <k>] [--parent <id>] [--priority <p>] [--assignee <a>] [--label <l>]...
-taskd task show <id>
-taskd task update <id> [--title <t>] [--description <d>] [--status <s>] [--priority <p>] [--assignee <a>] [--epic <id>] [--kind <k>]
-taskd task done <id>
-taskd task delete <id>
+datubyte-task task list --project <id> [--status <s>] [--epic <id>] [--assignee <a>] [--label <l>] [--kind <k>]
+datubyte-task task create --project <id> <title> [--epic <id>] [--kind <k>] [--parent <id>] [--priority <p>] [--assignee <a>] [--label <l>]...
+datubyte-task task show <id>
+datubyte-task task update <id> [--title <t>] [--description <d>] [--status <s>] [--priority <p>] [--assignee <a>] [--epic <id>] [--kind <k>]
+datubyte-task task done <id>
+datubyte-task task delete <id>
 
 # Task outputs (file paths, commit SHAs, URLs, free text)
-taskd task output <id> --kind <kind> --ref <ref> [--label <label>]
-taskd task outputs <id>
+datubyte-task task output <id> --kind <kind> --ref <ref> [--label <label>]
+datubyte-task task outputs <id>
 
 # Task dependencies
-taskd task block <id> --by <dep_id>
-taskd task unblock <id> --from <dep_id>
+datubyte-task task block <id> --by <dep_id>
+datubyte-task task unblock <id> --from <dep_id>
 
 # Labels
-taskd label list
-taskd label create <name> [--color <hex>]
-taskd label delete <id>
+datubyte-task label list
+datubyte-task label create <name> [--color <hex>]
+datubyte-task label delete <id>
 ```
 
 IDs are human-readable (`bold-fox-a3f1`) and support prefix lookup (`bold-fox`).

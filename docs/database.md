@@ -147,7 +147,7 @@ Multi-statement mutations are wrapped in explicit transactions with rollback on 
 | Journal mode | WAL |
 | Foreign keys | ON |
 | Schema version | Tracked via `PRAGMA user_version` (currently 3) |
-| Default file | `taskd.db` |
+| Default file | `datubyte-task.db` |
 | Migrations | Incremental `if version < N` chain in `db.rs` |
 
 ## API Endpoints
@@ -193,36 +193,36 @@ Multi-statement mutations are wrapped in explicit transactions with rollback on 
 
 ## CLI
 
-Binary: `taskd`. Use `--db <path>` to specify the database file (default: `taskd.db`).
+Binary: `datubyte-task`. Use `--db <path>` to specify the database file (default: `datubyte-task.db`).
 
 ### Commands
 
 ```
-taskd project list
-taskd project create <name> [--description <desc>]
-taskd project show <id>
-taskd project delete <id>
+datubyte-task project list
+datubyte-task project create <name> [--description <desc>]
+datubyte-task project show <id>
+datubyte-task project delete <id>
 
-taskd epic list --project <id>
-taskd epic create --project <id> <name> [--description <desc>]
-taskd epic show <id>
-taskd epic close <id>
-taskd epic delete <id>
+datubyte-task epic list --project <id>
+datubyte-task epic create --project <id> <name> [--description <desc>]
+datubyte-task epic show <id>
+datubyte-task epic close <id>
+datubyte-task epic delete <id>
 
-taskd task list --project <id> [--status <s>] [--epic <id>] [--assignee <a>] [--label <l>] [--kind <k>] [--parent <id>]
-taskd task create --project <id> <title> [--epic <id>] [--kind <k>] [--parent <id>] [--priority <p>] [--assignee <a>] [--label <l>]...
-taskd task show <id>
-taskd task update <id> [--title <t>] [--description <d>] [--status <s>] [--priority <p>] [--assignee <a>] [--epic <id>] [--kind <k>]
-taskd task done <id>
-taskd task output <id> --kind <kind> --ref <ref> [--label <label>]
-taskd task outputs <id>
-taskd task block <id> --by <dep_id>
-taskd task unblock <id> --from <dep_id>
-taskd task delete <id>
+datubyte-task task list --project <id> [--status <s>] [--epic <id>] [--assignee <a>] [--label <l>] [--kind <k>] [--parent <id>]
+datubyte-task task create --project <id> <title> [--epic <id>] [--kind <k>] [--parent <id>] [--priority <p>] [--assignee <a>] [--label <l>]...
+datubyte-task task show <id>
+datubyte-task task update <id> [--title <t>] [--description <d>] [--status <s>] [--priority <p>] [--assignee <a>] [--epic <id>] [--kind <k>]
+datubyte-task task done <id>
+datubyte-task task output <id> --kind <kind> --ref <ref> [--label <label>]
+datubyte-task task outputs <id>
+datubyte-task task block <id> --by <dep_id>
+datubyte-task task unblock <id> --from <dep_id>
+datubyte-task task delete <id>
 
-taskd label list
-taskd label create <name> [--color <hex>]
-taskd label delete <id>
+datubyte-task label list
+datubyte-task label create <name> [--color <hex>]
+datubyte-task label delete <id>
 ```
 
 ## Testing

@@ -6,12 +6,12 @@ $ARGUMENTS
 
 ## Instructions
 
-1. Run `taskd task show <id>` to verify the task exists and see its current state
+1. Run `datubyte-task task show <id>` to verify the task exists and see its current state
 2. If the task has children, check that all children are done or cancelled — warn if not
 3. Attach any outputs from the work:
-   - Files changed: `taskd task output <id> --kind file --ref <path>`
-   - Commits made: `taskd task output <id> --kind commit --ref <sha>`
-   - Relevant URLs: `taskd task output <id> --kind url --ref <url>`
-   - Notes/findings: `taskd task output <id> --kind text --ref "<description>"`
-4. Mark done: `taskd task done <id>`
-5. Log completion: `taskd task log <id> "Completed: <brief summary>"`
+   - Files changed: `datubyte-task task output <id> --kind file --ref <path>`
+   - Commits made: `datubyte-task task output <id> --kind commit --ref <sha>`
+   - Relevant URLs: `datubyte-task task output <id> --kind url --ref <url>`
+   - Notes/findings: `datubyte-task task output <id> --kind text --ref "<description>"`
+4. Mark done: `datubyte-task task done <id>`
+5. Log completion: `datubyte-task task log <id> "Completed: <brief summary>"`
