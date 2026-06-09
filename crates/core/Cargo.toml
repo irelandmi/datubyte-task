@@ -1,8 +1,8 @@
 [package]
-name = "taskd-core"
+name = "datubyte-task-core"
 version = "0.1.0"
 edition = "2021"
-description = "Core library for taskd — lightweight project management for AI agent workflows"
+description = "Core library for datubyte-task — lightweight project management for AI agent workflows"
 license = "MIT"
 authors = ["Isaac Ireland"]
 

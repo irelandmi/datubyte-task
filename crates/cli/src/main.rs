@@ -1,13 +1,13 @@
 use clap::{Parser, Subcommand};
 use tabled::{Table, Tabled};
 
-use taskd_core::db::Database;
-use taskd_core::models::*;
+use datubyte_task_core::db::Database;
+use datubyte_task_core::models::*;
 
 #[derive(Parser)]
-#[command(name = "taskd", about = "Lightweight project management")]
+#[command(name = "datubyte-task", about = "Lightweight project management")]
 struct Cli {
-	#[arg(long, default_value = "taskd.db")]
+	#[arg(long, default_value = "datubyte-task.db")]
 	db: String,
 
 	#[command(subcommand)]
@@ -234,7 +234,7 @@ fn main() {
 	}
 }
 
-fn run(db: &Database, cmd: Commands) -> taskd_core::error::Result<()> {
+fn run(db: &Database, cmd: Commands) -> datubyte_task_core::error::Result<()> {
 	match cmd {
 		Commands::Project { cmd } => match cmd {
 			ProjectCmd::List => {
@@ -458,8 +458,8 @@ fn run(db: &Database, cmd: Commands) -> taskd_core::error::Result<()> {
 			}
 		},
 		Commands::Serve { port, static_dir } => {
-			println!("use taskd-server binary to run the server:");
-			println!("  taskd-server --port {port}{}", static_dir.map(|d| format!(" --static-dir {d}")).unwrap_or_default());
+			println!("use datubyte-task-server binary to run the server:");
+			println!("  datubyte-task-server --port {port}{}", static_dir.map(|d| format!(" --static-dir {d}")).unwrap_or_default());
 		}
 	}
 	Ok(())

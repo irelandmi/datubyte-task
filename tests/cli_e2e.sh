@@ -2,18 +2,18 @@
 set -euo pipefail
 
 # End-to-end CLI test against a temp database.
-# Usage: ./tests/cli_e2e.sh [path-to-taskd-binary]
+# Usage: ./tests/cli_e2e.sh [path-to-datubyte-task-binary]
 #
 # Builds the binary if no path is given.
 
 TASKD="${1:-}"
 if [ -z "$TASKD" ]; then
-	echo "==> Building taskd..."
-	cargo build --bin taskd --quiet
-	TASKD="$(cargo metadata --format-version 1 --no-deps | grep -o '"target_directory":"[^"]*"' | cut -d'"' -f4)/debug/taskd"
+	echo "==> Building datubyte-task..."
+	cargo build --bin datubyte-task --quiet
+	TASKD="$(cargo metadata --format-version 1 --no-deps | grep -o '"target_directory":"[^"]*"' | cut -d'"' -f4)/debug/datubyte-task"
 fi
 
-DB="$(mktemp /tmp/taskd-test-XXXXXX.db)"
+DB="$(mktemp /tmp/datubyte-task-test-XXXXXX.db)"
 trap 'rm -f "$DB"' EXIT
 
 run() {

@@ -1046,18 +1046,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "taskd"
+name = "datubyte-task"
 version = "0.1.0"
 dependencies = [
  "clap",
  "reqwest",
  "serde_json",
  "tabled",
- "taskd-core",
+ "datubyte-task-core",
 ]
 
 [[package]]
-name = "taskd-core"
+name = "datubyte-task-core"
 version = "0.1.0"
 dependencies = [
  "rusqlite",
@@ -1067,14 +1067,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "taskd-server"
+name = "datubyte-task-server"
 version = "0.1.0"
 dependencies = [
  "axum",
  "clap",
  "serde",
  "serde_json",
- "taskd-core",
+ "datubyte-task-core",
  "tokio",
  "tokio-stream",
  "tower-http",

@@ -1,6 +1,6 @@
 # Agent Architecture
 
-taskd is a lightweight project management tool (SQLite, Rust CLI/API, web UI with live SSE updates). The goal is to enable AI agents to plan, execute, and report on software projects — while humans monitor progress via the kanban board in real-time.
+datubyte-task is a lightweight project management tool (SQLite, Rust CLI/API, web UI with live SSE updates). The goal is to enable AI agents to plan, execute, and report on software projects — while humans monitor progress via the kanban board in real-time.
 
 In the real world, a project flows from requirements → planning → execution → review. We want to mirror that with agents.
 
@@ -17,7 +17,7 @@ Reads a requirements document (PRD, spec, brief) and decomposes it into the proj
 - Breaks stories into concrete **tasks** and **sub-tasks**
 - Sets priorities and identifies dependencies between tasks
 
-The planner's output is a fully populated taskd project that an execution team can pick up.
+The planner's output is a fully populated datubyte-task project that an execution team can pick up.
 
 ### 2. Executor(s)
 
@@ -25,8 +25,8 @@ Picks up tasks and does the work. An executor:
 
 - Claims a task (status → `in_progress`, assignee → agent ID)
 - Performs the work (write code, run tests, call APIs, etc.)
-- Logs progress via task events (`taskd task log`)
-- Marks complete (`taskd task done`) or flags as blocked
+- Logs progress via task events (`datubyte-task task log`)
+- Marks complete (`datubyte-task task done`) or flags as blocked
 - Picks the next available task
 
 Executors can be a **single agent** (sequential) or a **worker pool** (parallel). The pool model is more efficient but needs conflict resolution — see schema gaps below.
@@ -99,11 +99,11 @@ Two executors could both see a `todo` task and both set it to `in_progress`. Sta
 
 The harness should be **LLM-agnostic** — any model that supports tool calling can be an executor/planner/coordinator. The integration surface is:
 
-- **Tools**: Wrap taskd CLI commands (or HTTP API) as tool definitions. The agent calls `create_task`, `update_status`, `log_comment`, etc.
+- **Tools**: Wrap datubyte-task CLI commands (or HTTP API) as tool definitions. The agent calls `create_task`, `update_status`, `log_comment`, etc.
 - **Context**: Feed the agent its assigned task details (title, description, parent context, spike findings) as system/user messages.
 - **Loop**: The harness runs the agent in a loop — present task → agent acts → check completion → next task.
 
 This means the harness is a thin orchestrator, not tied to LangGraph or any specific framework. It could be:
 - A Python script with `while` loop + OpenAI/Anthropic SDK
 - A LangGraph graph with tool nodes
-- A bash script calling `taskd` CLI + an LLM API
+- A bash script calling `datubyte-task` CLI + an LLM API

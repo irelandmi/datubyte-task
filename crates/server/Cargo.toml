@@ -1,13 +1,13 @@
 [package]
-name = "taskd-server"
+name = "datubyte-task-server"
 version = "0.1.0"
 edition = "2021"
-description = "API server for taskd — lightweight project management for AI agent workflows"
+description = "API server for datubyte-task — lightweight project management for AI agent workflows"
 license = "MIT"
 authors = ["Isaac Ireland"]
 
 [dependencies]
-taskd-core = { path = "../core" }
+datubyte-task-core = { path = "../core" }
 axum = "0.8"
 tokio = { version = "1", features = ["full"] }
 tokio-stream = { version = "0.1", features = ["sync"] }
