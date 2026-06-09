@@ -1,0 +1,8 @@
+target/
+.git/
+**/node_modules/
+frontend/dist/
+docs/
+tests/
+.claude/
+*.db
